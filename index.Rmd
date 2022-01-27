@@ -1,7 +1,7 @@
 ---
 title: "Discharge Data Example"
-author: "Matthew Ross"
-date: "1/24/2022"
+author: "Marian Hsieh"
+date: "`r format(Sys.time(), '%m/%d/%Y')`"
 output:
   html_document:
     toc: true
@@ -15,79 +15,56 @@ library(tidyverse)
 library(dataRetrieval)
 library(dygraphs)
 library(xts)
+library(revealjs)
 ```
 
-
 # Methods
+
+## Site Description
 
 The Poudre River at Lincoln Bridge is:
 
   - Downstream of only a little bit of urban stormwater
-
+  
   - Near Odell Brewing CO
   
   - Near an open space area and the Poudre River Trail
   
-  - **Downstream of many agricultral diversions**
-
-
-## SiteDescription
+  - **Downstream of many agricultural diversions**
 
 ![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
 
-
 ## Data Acquisition and Plotting tests
 
-## Data Download
-
-
+### Data Download
 ```{r downloader}
-
 q <- readNWISdv(siteNumbers = '06752260',
                 parameterCd = '00060',
                 startDate = '2017-01-01',
                 endDate = '2022-01-01') %>%
   rename(q = 'X_00060_00003')
-
-
 ```
 
-
-
-## Static Data Plotter
-
-
+### Static Data Plotter
 ```{r, warning = FALSE, fig.width = 8, fig.height = 5}
-
 ggplot(q, aes(x = Date, y = q)) + 
   geom_line() + 
   ylab('Q (cfs)') + 
   ggtitle('Discharge in the Poudre River, Fort Collins')
-
 ```
 
-
-## Interactive Data Plotter
-
-
+### Interactive Data Plotter
 ```{r}
-
 q_xts <- xts(q$q, order.by = q$Date)
-
-
 dygraph(q_xts) %>%
   dyAxis("y", label = "Discharge (cfs)") 
 ```
 
 
-
-# Assignment. 
-
-
-This assignment will be primarily about demonstrating some expertice in using
+# Assignment
+This assignment will be primarily about demonstrating some expertise in using
 RMarkdown, since we will be using Rmds as the primary form of homework and 
 assignments. With that in mind, your assignment for this homework is to:
-
 
 1) Fork the example repository into your personal GitHub
 
@@ -114,13 +91,22 @@ todays date, not just a static date you enter.
 9) Bonus, create an "index_talk.Rmd" version of your document using the
 `revealjs` package. Add link to your original report-style document. 
 
+## DyGraph example
+```{r}
+#Points and lines
+dygraph(q_xts) %>%
+  dyAxis("y",label="Discharge (cfs)") %>%
+  dyOptions(drawPoints=TRUE,pointSize=1.5)
 
-
-
-## DyGraph example. 
-
+#Points only
+dygraph(q_xts) %>%
+  dyAxis("y",label="Discharge (cfs)") %>%
+  dyOptions(strokeWidth=0,drawPoints=TRUE,pointSize=1.5)
+```
 
 ## Poudre Paragraph
+**Fishing** is a popular way to enjoy the Poudre River year-round. Beside a handful of *natural preserves* along the river, most areas are open to fishers with a permit. Brochures from both [Colorado Parks & Wildlife](https://cpw.state.co.us/learn/Maps/CPW_FishingThePoudreCanyonBrochure.pdf) and [Fort Collins](https://www.fcgov.com/naturalareas/pdf/fishing-brochure16.pdf) share helpful guidelines and maps. Local enthusiast Max DesMarais has also created a [Google map](https://www.google.com/maps/d/u/0/viewer?mid=183f1Ysk7y0pSBDv2nHQmlKWEmnnktagH&ll=40.52056167068769%2C-105.41546394820773&z=9) of nice spots. Many **trout** can be found in the Poudre, including rainbow, cutthroat, cutbow, and brown.
+
 
 
 
