@@ -103,6 +103,3 @@ dygraph(q_xts) %>%
 
 ## Poudre Paragraph
 **Fishing** is a popular way to enjoy the Poudre River year-round. Beside a handful of *natural preserves* along the river, most areas are open to fishers with a permit. Brochures from both [Colorado Parks & Wildlife](https://cpw.state.co.us/learn/Maps/CPW_FishingThePoudreCanyonBrochure.pdf) and [Fort Collins](https://www.fcgov.com/naturalareas/pdf/fishing-brochure16.pdf) share helpful guidelines and maps. Local enthusiast Max DesMarais has also created a [Google map](https://www.google.com/maps/d/u/0/viewer?mid=183f1Ysk7y0pSBDv2nHQmlKWEmnnktagH&ll=40.52056167068769%2C-105.41546394820773&z=9) of nice spots. Many **trout** can be found in the Poudre, including rainbow, cutthroat, cutbow, and brown.
-
-## Presentation
-https://marianhsieh.github.io/1_rmarkdown_examples/index_talk.html#/
